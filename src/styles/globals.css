@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --accent: #0f766e;
+  --accent-soft: #ccfbf1;
+}
+
+html.dark {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface-2: #334155;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --accent: #14b8a6;
+  --accent-soft: #134e4a;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    "Segoe UI",
+    "Microsoft YaHei",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border p-5;
+    background: var(--surface);
+    border-color: var(--border);
+  }
+  .btn {
+    @apply rounded-lg px-4 py-2 text-sm font-medium transition-colors;
+  }
+  .btn-primary {
+    @apply btn text-white;
+    background: var(--accent);
+  }
+  .btn-primary:hover {
+    filter: brightness(1.08);
+  }
+  .btn-ghost {
+    @apply btn;
+    background: var(--surface-2);
+    color: var(--text);
+  }
+  .btn-ghost:hover {
+    filter: brightness(1.04);
+  }
+  .input {
+    @apply rounded-lg border px-3 py-2 text-sm outline-none;
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--text);
+  }
+  .input:focus {
+    border-color: var(--accent);
+  }
+  .label {
+    @apply mb-1 block text-xs font-medium;
+    color: var(--text-muted);
+  }
+}
