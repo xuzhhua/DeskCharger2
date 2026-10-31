@@ -90,5 +90,7 @@ export const zhCN = {
     language: "语言",
     unsaved: "有未保存的修改",
     general: "通用",
+    startMinimized: "启动后自动缩小到托盘",
+    startMinimizedHint: "启动时不显示主窗口，只常驻托盘（建议配合开机自启）",
   },
 };

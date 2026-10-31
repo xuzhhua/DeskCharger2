@@ -90,5 +90,7 @@ export const en = {
     language: "Language",
     unsaved: "You have unsaved changes",
     general: "General",
+    startMinimized: "Start minimized to tray",
+    startMinimizedHint: "Don't show the window on launch; stays in the tray (best with launch at startup)",
   },
 };

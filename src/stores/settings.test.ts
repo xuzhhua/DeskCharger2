@@ -19,6 +19,7 @@ describe("defaultSettings", () => {
     expect(s.general.theme).toBe("system");
     expect(s.general.lang).toBe("zh-CN");
     expect(s.general.autostart).toBe(false);
+    expect(s.general.startMinimized).toBe(false);
   });
 
   it("provides sane defaults for feature modules", () => {

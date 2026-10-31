@@ -44,6 +44,8 @@ export interface GeneralSettings {
   autostart: boolean;
   lang: "zh-CN" | "en";
   enabled: boolean;
+  /** 启动后不显示主窗口，直接缩到托盘 */
+  startMinimized: boolean;
 }
 
 export interface PomodoroSettings {

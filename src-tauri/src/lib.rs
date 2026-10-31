@@ -262,8 +262,10 @@ pub fn run() {
             clipboard::watch(shared.clone(), handle.clone());
             monitor::watch(shared.clone(), handle.clone());
 
-            // 首次启动显示主窗口
-            hotkey::show_main(handle);
+            // 首次启动：勾选“启动后自动缩小到托盘”时保持隐藏，仅托盘常驻
+            if !settings.general.start_minimized {
+                hotkey::show_main(handle);
+            }
             Ok(())
         })
         .run(tauri::generate_context!())

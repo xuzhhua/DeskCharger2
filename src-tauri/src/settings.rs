@@ -12,6 +12,9 @@ pub struct GeneralSettings {
     pub autostart: bool,
     pub lang: String,      // zh-CN | en
     pub enabled: bool,     // 全局功能开关
+    /// 启动后不显示主窗口，直接缩进托盘
+    #[serde(default)]
+    pub start_minimized: bool,
 }
 
 // ---------- 热键 ----------
@@ -139,6 +142,7 @@ impl Default for AppSettings {
                 autostart: false,
                 lang: "zh-CN".into(),
                 enabled: true,
+                start_minimized: false,
             },
             hotkeys: vec![
                 Hotkey {
@@ -246,5 +250,23 @@ mod tests {
         let s: AppSettings = serde_json::from_str(json).unwrap();
         assert_eq!(s.general.theme, "dark");
         assert_eq!(s.version, 1);
+        // 老配置没有 startMinimized 字段，靠 #[serde(default)] 兜底
+        assert!(!s.general.start_minimized);
+    }
+
+    /// 回归保护：新增字段不能让已有配置整体重置
+    #[test]
+    fn old_config_without_start_minimized_still_parses() {
+        let json = r#"{
+            "general":{"theme":"dark","autostart":true,"lang":"en","enabled":false},
+            "hotkeys":[],"reminders":[],"pomodoro":{"workMin":25,"shortBreakMin":5,"longBreakMin":15,"cyclesBeforeLong":4,"autoNext":false},
+            "clipboard":{"enabled":true,"maxItems":100},"monitor":{"enabled":true,"intervalMs":1000,"trayCpu":true},
+            "launcher":{"extraDirs":[],"aliases":[]},"version":1
+        }"#;
+        let s: AppSettings = serde_json::from_str(json).unwrap();
+        assert_eq!(s.general.theme, "dark");
+        assert!(s.general.autostart);
+        assert!(!s.general.enabled);
+        assert!(!s.general.start_minimized);
     }
 }

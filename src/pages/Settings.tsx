@@ -82,6 +82,19 @@ export function Settings() {
               onChange={(v) => update((s) => { s.general.enabled = v; })}
             />
           </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col">
+              <span className="text-sm">{t("settings.startMinimized")}</span>
+              <span className="text-xs" style={{ color: "var(--text-muted)" }}>
+                {t("settings.startMinimizedHint")}
+              </span>
+            </div>
+            <Toggle
+              checked={settings.general.startMinimized}
+              onChange={(v) => update((s) => { s.general.startMinimized = v; })}
+            />
+          </div>
         </div>
       </div>
 

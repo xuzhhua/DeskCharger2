@@ -5,7 +5,13 @@ import type { AppSettings, Theme } from "../lib/types";
 import { applyTheme, useTheme } from "../lib/hooks";
 
 export const defaultSettings = (): AppSettings => ({
-  general: { theme: "system", autostart: false, lang: "zh-CN", enabled: true },
+  general: {
+    theme: "system",
+    autostart: false,
+    lang: "zh-CN",
+    enabled: true,
+    startMinimized: false,
+  },
   hotkeys: [
     {
       id: "hk-notepad",
